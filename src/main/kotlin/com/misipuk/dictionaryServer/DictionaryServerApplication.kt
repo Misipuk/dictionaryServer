@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 @SpringBootApplication
 class DictionaryServerApplication
 
-fun main(args: Array<String>) {
-    SpringApplication.run(DictionaryServerApplication::class.java, *args)
+object Application {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        SpringApplication.run(DictionaryServerApplication::class.java, *args)
+    }
 }

@@ -1,7 +1,7 @@
-package com.meetify.server.repository
+package com.misipuk.dictionaryServer.repository
 
-import com.meetify.server.controller.AbstractController
-import com.meetify.server.model.entity.BaseEntity
+import com.misipuk.dictionaryServer.controller.AbstractController
+import com.misipuk.dictionaryServer.model.entity.BaseEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.NoRepositoryBean
