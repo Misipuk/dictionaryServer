@@ -18,14 +18,6 @@ import java.util.*
 import javax.sql.DataSource
 
 
-/**
- * @suppress
- * Class that used by Spring to configure Hibernate and database using application.properties.
- * @since  0.1.0
- * @property  env           property that allows to load some config lines.
- * @property  dataSource       property that allows to connect to database.
- * @property  entityManagerFactory  factory that used to create entityManager instances.
- */
 @Configuration @EnableTransactionManagement @Suppress("SpringKotlinAutowiring")
 open class DatabaseConfig {
 
@@ -38,10 +30,7 @@ open class DatabaseConfig {
     @Autowired
     private val entityManagerFactory: LocalContainerEntityManagerFactoryBean? = null
 
-    /**
-     * Declare the DataSource with parameters of application.properties.
-     * @return dataSource
-     */
+
     @Bean
     open fun dataSource(): DataSource
             = DriverManagerDataSource().apply {
@@ -51,10 +40,7 @@ open class DatabaseConfig {
         password = env.getProperty("db.password")
     }
 
-    /**
-     * Declare the JPA entity manager factory.
-     * @return LocalContainerEntityManagerFactoryBean
-     */
+
     @Bean
     open fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean
             = LocalContainerEntityManagerFactoryBean().apply {
@@ -68,31 +54,19 @@ open class DatabaseConfig {
         })
     }
 
-    /**
-     * Declare the transaction manager.
-     * @return JpaTransactionManager
-     */
+
     @Bean
     open fun transactionManager(): JpaTransactionManager
             = JpaTransactionManager().apply {
         entityManagerFactory = this@DatabaseConfig.entityManagerFactory!!.`object`
     }
 
-    /**
-     * PersistenceExceptionTranslationPostProcessor is a bean post processor
-     * which adds an advisor to any bean annotated with Repository so that any
-     * platform-specific exceptions are caught and then rethrown as one
-     * Spring's unchecked data access exceptions (i.e. a subclass of DataAccessException).
-     * @return PersistenceExceptionTranslationPostProcessor
-     */
+
     @Bean
     open fun exceptionTranslation(): PersistenceExceptionTranslationPostProcessor
             = PersistenceExceptionTranslationPostProcessor()
 
-    /**
-     * Declare jacksonObjectMapper that works with Kotlin's classes.
-     * @return Jackson2ObjectMapperBuilder
-     */
+
     @Bean
     open fun objectMapperBuilder(): Jackson2ObjectMapperBuilder
             = Jackson2ObjectMapperBuilder().apply {

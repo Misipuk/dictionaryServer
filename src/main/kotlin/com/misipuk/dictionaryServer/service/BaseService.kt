@@ -4,11 +4,10 @@ import java.io.Serializable
 import java.util.*
 
 /**
- * BaseService is an interface, that allows to create a layer of abstraction between Repository and Controller.
+ * Basefunctional (add, delete etc)
  * It's contains a logic that works with some information from database, gives to Controller in appropriate form.
  * T is a item, which we are working with.
  * V is item's ID.
- * @since 0.3.0
  */
 interface BaseService<T, in V : Serializable> {
 
